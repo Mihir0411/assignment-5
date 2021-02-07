@@ -1,0 +1,29 @@
+.food{
+    border: 1px solid goldenrod; 
+ }
+ #food-container{
+     display: grid;
+     grid-template-columns: repeat(4, 1fr);
+     grid-gap:10px;
+ }
+ .searchBox{
+     text-align: center;
+     margin-top: 100px;
+ }
+ .search{
+     width: 50%;
+     height: 30px;
+ }
+ .btn{
+    height: 30px;
+     background-color: blueviolet;
+ }
+.meal{
+    
+    text-align: center;
+}
+.button{
+    margin-left: 100px;
+    margin-bottom: 10px;
+    color: brown;
+}
