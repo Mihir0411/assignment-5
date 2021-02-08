@@ -28,7 +28,7 @@
     margin-bottom: 10px;
     color: brown;
 }
-p, h3, h2{
+h3{
     text-align: center;
 }
 h2{
@@ -45,7 +45,6 @@ h2{
   background-color:lightgrey;
 }
 .detailImage{
-    margin-left: 550px;
     width: 150px;
 }
 .image{
