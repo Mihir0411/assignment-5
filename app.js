@@ -52,8 +52,8 @@ const displayFoodsDetails = foodDetails => {
     const detailsDiv = document.getElementById('foodsDetails')
     detailsDiv.innerHTML = `
     <img class="detailImage" src=${foodDetails[0].strMealThumb}>
-    <h2>Ingredient</h2>
-    <p><span class="item">Item Name:</span>${foodDetails[0].strMeal}</p>
+    <h2>${foodDetails[0].strMeal}<h2>
+    <h4>Ingredient</h4>
     <p><span class="item">Drink Alternate:</span>${foodDetails[0].strDrinkAlternate}</p>
     <p><span class="item">Category</span>:${foodDetails[0].strCategory}</p>
     <p><span class="item">Area:</span>${foodDetails[0].strArea}</p>
@@ -63,5 +63,6 @@ const displayFoodsDetails = foodDetails => {
     <p><span class="item">4:</span>${foodDetails[0].strIngredient4}</p>
     <p><span class="item">5:</span>${foodDetails[0].strIngredient5}</p>
     <p><span class="item">6:</span>${foodDetails[0].strIngredient6}</p>
+    <p><span class="item">7:</span>${foodDetails[0].strIngredient7}</p>
     `
 }
