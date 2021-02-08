@@ -2,56 +2,66 @@
 const searchBtn = document.getElementById('search_button');
 searchBtn.addEventListener('click', () => {
     const inputFoodName = document.getElementById('foodNameInput').value;
-
-    getFoodName(inputFoodName);
+    if(inputFoodName === ""){
+        alert("Please give the item name");
+    }else{
+        getFoodName(inputFoodName);
+    }
+    
 });
 
-const api = 'https://www.themealdb.com/api/json/v1/1/search.php?f=';
+const apiBase = 'https://www.themealdb.com/api/json/v1/1/search.php?f=';
 const getFoodName = foodName => {
-    const url = `${api}${foodName}`;
+    const url = `${apiBase}${foodName}`;
     fetch(url)
     .then(res => res.json())
-    .then(data => displayFoods(data));
+    .then(data => displayFoods(data.meals));
 }
 
 
 const displayFoods = foods =>{
-    const item = foods.meals;
     const parentDiv = document.getElementById('food-container');
-    item.forEach(meal => {
+    parentDiv.innerHTML = ''
+        foods.forEach(meals => {
         const foodDiv = document.createElement('div');
         foodDiv.className = 'food'
-        const countryInfo = `
-        <h3 class="meal">${meal.strMeal}</h3>
-        <button onclick="getFoodDetails('foodDetails')" class="button">Details</button>
+        foodDiv.innerHTML = `
+        <div onclick="getFoodDetails(${meals.idMeal})">
+        <div>
+        <img class="image" src=${meals.strMealThumb}>
+        </div>
+        <h3>${meals.strMeal}</h3>
+        </div>
         ` 
-        foodDiv.innerHTML = countryInfo;
         parentDiv.appendChild(foodDiv);
-    });
-
+            console.log(meals.strCategory)
+        })
 }
 
-
-const apiDetail = 'https://www.themealdb.com/api/json/v1/1/search.php?f=';
-
-const getFoodDetails = foodDetails => {
-    const url = `${apiDetail}${foodDetails}`
+const apiId = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i='
+const getFoodDetails = id =>{
+    const url = `${apiId}${id}`
     fetch(url)
-    .then (res => res.json())
-    .then(data => foodsDetails(data))
+    .then(res => res.json())
+    .then(data => displayFoodsDetails(data.meals))
+    
+
 }
 
-const foodsDetails = food =>{
-    const foodDetail = document.getElementById('foodsDetails')
-    foodDetail.innerHTML=`
-    <h5 class="asd">${food.strArea}</h5>
-    <p>${food.strIngredient1}</p>
-    <p>${food.strIngredient2}</p>
-    <p>${food.strIngredient3}</p>
-    <p>${food.strIngredient4}</p>
-    <p>${food.strIngredient5}</p>
-    <p>${food.strIngredient6}</p>
-    <p>${food.strIngredient7}</p>
-    <p>${food.strIngredient8}</p>
+const displayFoodsDetails = foodDetails => {
+    const detailsDiv = document.getElementById('foodsDetails')
+    detailsDiv.innerHTML = `
+    <img class="flag" src=${foodDetails[0].strMealThumb}>
+    <h2>Ingredient</h2>
+    <p><span class="item">Meal Name:</span>${foodDetails[0].strMeal}</p>
+    <p><span class="item">DrinkAlternate:</span>${foodDetails[0].strDrinkAlternate}</p>
+    <p><span class="item">Category</span>:${foodDetails[0].strCategory}</p>
+    <p><span class="item">Area:</span>${foodDetails[0].strArea}</p>
+    <p><span class="item">1:</span>${foodDetails[0].strIngredient1}</p>
+    <p><span class="item">2:</span>${foodDetails[0].strIngredient2}</p>
+    <p><span class="item">3:</span>${foodDetails[0].strIngredient3}</p>
+    <p><span class="item">4:</span>${foodDetails[0].strIngredient4}</p>
+    <p><span class="item">5:</span>${foodDetails[0].strIngredient5}</p>
+    <p><span class="item">6:</span>${foodDetails[0].strIngredient6}</p>
     `
 }
