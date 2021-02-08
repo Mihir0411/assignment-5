@@ -51,7 +51,7 @@ const getFoodDetails = id =>{
 const displayFoodsDetails = foodDetails => {
     const detailsDiv = document.getElementById('foodsDetails')
     detailsDiv.innerHTML = `
-    <img class="flag" src=${foodDetails[0].strMealThumb}>
+    <img class="detailImage" src=${foodDetails[0].strMealThumb}>
     <h2>Ingredient</h2>
     <p><span class="item">Meal Name:</span>${foodDetails[0].strMeal}</p>
     <p><span class="item">DrinkAlternate:</span>${foodDetails[0].strDrinkAlternate}</p>
