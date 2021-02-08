@@ -39,8 +39,8 @@ const displayFoods = foods =>{
 }
 
 const apiId = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i='
-const getFoodDetails = id =>{
-    const url = `${apiId}${id}`
+const getFoodDetails = idMeal =>{
+    const url = `${apiId}${idMeal}`
     fetch(url)
     .then(res => res.json())
     .then(data => displayFoodsDetails(data.meals))
@@ -53,8 +53,8 @@ const displayFoodsDetails = foodDetails => {
     detailsDiv.innerHTML = `
     <img class="detailImage" src=${foodDetails[0].strMealThumb}>
     <h2>Ingredient</h2>
-    <p><span class="item">Meal Name:</span>${foodDetails[0].strMeal}</p>
-    <p><span class="item">DrinkAlternate:</span>${foodDetails[0].strDrinkAlternate}</p>
+    <p><span class="item">Item Name:</span>${foodDetails[0].strMeal}</p>
+    <p><span class="item">Drink Alternate:</span>${foodDetails[0].strDrinkAlternate}</p>
     <p><span class="item">Category</span>:${foodDetails[0].strCategory}</p>
     <p><span class="item">Area:</span>${foodDetails[0].strArea}</p>
     <p><span class="item">1:</span>${foodDetails[0].strIngredient1}</p>
